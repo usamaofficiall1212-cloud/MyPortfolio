@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Dev | Web Portfolio</title>
+    <style>
+        /* This is the "Modifier" section (CSS) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212; /* Dark Mode like Android Studio */
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 1px solid #333;
+            border-radius: 20px;
+            background: #1e1e1e;
+        }
+        h1 { color: #bb86fc; } /* Android Material Purple */
+        button {
+            background-color: #03dac6;
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover { background-color: #018786; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hello from the Web! 🚀</h1>
+        <p>I'm a Mobile App Developer exploring Full Stack.</p>
+        <p>Current Projects: <b>Al-Muqeet Milk</b> & <b>Accura Vault</b></p>
+        
+        <button onclick="showAlert()">Run Logic</button>
+    </div>
+
+    <script>
+        // This is your "Activity" logic (JavaScript)
+        function showAlert() {
+            alert("This logic is running on your MacBook Pro i9! No Gradle build required.");
+        }
+    </script>
+
+</body>
+</html>
