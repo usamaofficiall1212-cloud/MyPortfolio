@@ -6,9 +6,10 @@
     <title>Usama | Android Developer</title>
     <style>
         :root {
-            --primary: #bb86fc; /* Material Purple */
-            --secondary: #03dac6; /* Material Teal */
-            --bg: #121212;
+            --primary: #bb86fc; 
+            --secondary: #03dac6; 
+            --whatsapp: #25D366;
+            --bg: #c4c4c4;
             --surface: #1e1e1e;
         }
 
@@ -30,7 +31,7 @@
             text-align: center;
             background: var(--surface);
             padding: 40px;
-            border-radius: 28px; /* Smooth Android-style corners */
+            border-radius: 28px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid #333;
         }
@@ -44,39 +45,48 @@
             margin-top: 40px;
         }
 
+        /* --- THE FIXED HOVER SECTION --- */
         .card {
             background: #252525;
             padding: 25px;
             border-radius: 20px;
-            transition: transform 0.3s ease;
             border: 1px solid #333;
             text-align: left;
+            transition: all 0.3s ease; /* Makes the movement smooth */
         }
 
         .card:hover {
-            transform: translateY(-10px); /* Like a lift animation */
-            border-color: var(--secondary);
+            transform: translateY(-10px); /* Lifts the card */
+            border-color: var(--secondary); /* Changes border color on hover */
+            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.2); /* Adds a subtle glow */
         }
-
-        .card h3 { margin-top: 0; color: var(--secondary); }
+        /* ------------------------------- */
 
         .btn-group { margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
-        button {
-            background-color: var(--secondary);
-            color: #000;
+        button, .wa-btn {
             border: none;
             padding: 14px 28px;
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
         }
+
+        .wa-btn { background-color: var(--whatsapp); color: white; }
+        .wa-btn:hover { background-color: #128C7E; transform: scale(1.05); }
 
         .secondary-btn {
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
+        }
+        .secondary-btn:hover {
+            background: rgba(187, 134, 252, 0.1);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -85,34 +95,29 @@
     <div class="container">
         <header>
             <h1>Usama's Portfolio 🚀</h1>
-            <p style="opacity: 0.7;">Android Developer | Kotlin & Jetpack Compose Specialist</p>
+            <p style="opacity: 0.7;">Android Developer | Kotlin & Full Stack Explorer</p>
         </header>
         
         <div class="project-grid">
             <div class="card">
                 <h3>🥛 Al-Muqeet Milk</h3>
-                <p>Advanced management system featuring customer records, rate adjustments, and monthly PDF billing generation.</p>
+                <p>Management system with PDF billing. Built for my uncle's business.</p>
             </div>
             
             <div class="card">
-                <h3>🔐 Accura Vault</h3>
-                <p>Personal financial tracker for daily income/expense management with manual cloud backup integration.</p>
+                <h3>🔐 Aequs Vault</h3>
+                <p>Daily expense tracker with secure manual cloud backup.</p>
             </div>
         </div>
 
         <div class="btn-group">
-            <button onclick="pingSystem()">Ping System</button>
-            <button class="secondary-btn" onclick="location.href='https://github.com/usamaofficiall1212-cloud'">View GitHub</button>
+           <a href="https://wa.me/923105381868?text=Hi%20Usama,%20i%20saw%20your%20Profile!" 
+   class="wa-btn" target="_blank">
+    Contact on WhatsApp 💬
+</a>
+            <button class="secondary-btn" onclick="location.href='https://github.com/usamaofficiall1212-cloud'">GitHub</button>
         </div>
     </div>
-
-    <script>
-        function pingSystem() {
-            const status = ["System Online", "Gradle Build Bypassed", "Server Active"];
-            const randomStatus = status[Math.floor(Math.random() * status.length)];
-            alert("🚀 " + randomStatus + "\nRunning on MacBook Pro i9");
-        }
-    </script>
 
 </body>
 </html>
