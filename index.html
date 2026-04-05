@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usama | Android Developer</title>
-   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-player/2.0.4/lottie-player.full.js"></script>
     
     <style>
         :root {
-            /* 2. COLOR PALETTE: Precision-engineered for Light Mode */
             --primary: #26b0fa; 
             --secondary: #03dac6; 
             --whatsapp: #25D366;
@@ -18,7 +18,6 @@
             --card-bg: #eeeeee;
         }
 
-        /* 3. DARK MODE OVERRIDE: Applies when the 'dark-mode' class is added to <body> */
         .dark-mode {
             --bg: #121212; 
             --surface: #1e1e1e; 
@@ -36,7 +35,6 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            /* Smooth transition makes theme switching feel like a high-end app */
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
@@ -62,7 +60,6 @@
             margin-top: 40px;
         }
 
-        /* 4. CARD INTERACTION: Surgical hover effect used in modern UIs */
         .card {
             background: var(--card-bg);
             padding: 25px;
@@ -79,7 +76,6 @@
             box-shadow: 0 10px 20px rgba(3, 218, 198, 0.2);
         }
 
-        /* 5. BUTTON STYLES: Standardizing padding and transitions */
         .btn-group { 
             margin-top: 40px; 
             display: flex; 
@@ -134,22 +130,22 @@
     <div class="container">
         <button id="theme-toggle">🌙 Dark Mode</button>
 
-        <header style="display: flex; flex-direction: column; align-items: center;">
-           <dotlottie-player 
-    src="https://lottie.host/0278e63b-63a2-4a7b-a362-e64e9a59573f/7N2ZtX0y0z.json" 
-    background="transparent" 
-    speed="1" 
-    style="width: 140px; height: 140px;" 
-    loop 
-    autoplay>
-</dotlottie-player>
+      <header style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px;">
+    <dotlottie-player 
+        src="https://lottie.host/7918a39a-76d4-4a49-9f79-c5c2d3648439/8V9R8P3X9X.json" 
+        background="transparent" 
+        speed="1" 
+        style="width: 150px; height: 150px; display: block;" 
+        loop 
+        autoplay>
+    </dotlottie-player>
 
-            <h3 style="color: var(--secondary); margin-bottom: 0; font-weight: 400; opacity: 0.8; font-size: 1.1rem;">
-                Welcome Guys!
-            </h3>
-            <h1>Usama's Portfolio</h1>
-            <p style="opacity: 0.7; margin-top: 0;">Software Developer | Kotlin Java & Full Stack Explorer</p>
-        </header>
+    <h3 style="color: var(--secondary); margin-bottom: 0; font-weight: 400; opacity: 0.8; font-size: 1.1rem;">
+        Welcome Guys!
+    </h3>
+    <h1 style="margin-top: 5px;">Usama's Portfolio</h1>
+    <p style="opacity: 0.7; margin-top: 0;">Software Developer | Kotlin Java & Full Stack Explorer</p>
+</header>
 
         <h2 style="text-align: left; font-size: 1.2rem; margin-top: 40px; margin-bottom: -20px; color: var(--secondary); opacity: 0.9; font-weight: 500;">
             Successful Projects
