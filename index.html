@@ -9,35 +9,47 @@
             --primary: #26b0fa; 
             --secondary: #03dac6; 
             --whatsapp: #25D366;
-            --bg: #c4c4c4;
-            --surface: #1e1e1e;
+            --bg: #f4f4f4; 
+            --surface: #ffffff; 
+            --text: #121212; 
+            --card-bg: #eeeeee;
+        }
+
+        .dark-mode {
+            --bg: #121212; 
+            --surface: #1e1e1e; 
+            --text: #ffffff; 
+            --card-bg: #252525;
         }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             background-color: var(--bg);
-            color: white;
+            color: var(--text);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .container {
             max-width: 800px;
             width: 100%;
             text-align: center;
-            background: var(--surface);
+            background: var(--surface); 
             padding: 40px;
             border-radius: 28px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            border: 1px solid rgba(128, 128, 128, 0.2); 
+            transition: background 0.4s ease;
+            position: relative; /* For the button positioning */
         }
 
         h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
-        
+
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -45,26 +57,31 @@
             margin-top: 40px;
         }
 
-        /* --- THE FIXED HOVER SECTION --- */
         .card {
-            background: #252525;
+            background: var(--card-bg);
             padding: 25px;
             border-radius: 20px;
-            border: 1px solid #333;
+            border: 1px solid rgba(128, 128, 128, 0.2);
             text-align: left;
-            transition: all 0.3s ease; /* Makes the movement smooth */
+            transition: all 0.3s ease;
+            color: var(--text);
         }
 
         .card:hover {
-            transform: translateY(-10px); /* Lifts the card */
-            border-color: var(--secondary); /* Changes border color on hover */
-            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.2); /* Adds a subtle glow */
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.2);
         }
-        /* ------------------------------- */
 
-        .btn-group { margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-group { 
+            margin-top: 40px; 
+            display: flex; 
+            gap: 15px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+        }
 
-        button, .wa-btn {
+        button, .wa-btn, .resume-btn {
             border: none;
             padding: 14px 28px;
             border-radius: 12px;
@@ -79,27 +96,44 @@
         .wa-btn { background-color: var(--whatsapp); color: white; }
         .wa-btn:hover { background-color: #128C7E; transform: scale(1.05); }
 
+        .resume-btn {
+            border: 2px solid var(--text) !important;
+            color: var(--text) !important;
+            background: transparent;
+        }
+        .resume-btn:hover { background: rgba(128, 128, 128, 0.1); transform: scale(1.05); }
+
         .secondary-btn {
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
         }
-        .secondary-btn:hover {
-            background: rgba(187, 134, 252, 0.1);
-            transform: scale(1.05);
+        .secondary-btn:hover { background: rgba(38, 176, 250, 0.1); transform: scale(1.05); }
+
+        /* Theme Toggle Styling */
+        #theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-       <header>
-    <h3 style="color: var(--secondary); margin-bottom: 0; font-weight: 400; opacity: 0.8; font-size: 1.1rem;">
-        Welcome Guys!
-    </h3>
+        <button id="theme-toggle">🌙 Dark Mode</button>
+
         <header>
+            <h3 style="color: var(--secondary); margin-bottom: 0; font-weight: 400; opacity: 0.8; font-size: 1.1rem;">
+                Welcome Guys!
+            </h3>
             <h1>Usama's Portfolio 💻</h1>
-            <p style="opacity: 0.7;">Android Developer | Kotlin & Full Stack Explorer</p>
+            <p style="opacity: 0.7;">Software Developer | Kotlin Java & Full Stack Explorer</p>
         </header>
         
         <div class="project-grid">
@@ -115,16 +149,26 @@
         </div>
 
         <div class="btn-group">
-           <a href="https://wa.me/923105381868?text=Hi%20Usama,%20i%20just%20saw%20your%20Profile!" 
-   class="wa-btn" target="_blank">
-    Contact on WhatsApp 💬
-</a>
-<a href="Usama_CV.pdf" class="resume-btn" target="_blank" style="text-decoration: none; border: 2px solid white; padding: 14px 28px; border-radius: 12px; color: white; font-weight: bold; display: inline-block;">
-        Download CV 📄
-    </a>            
-<button class="secondary-btn" onclick="location.href='https://github.com/usamaofficiall1212-cloud'">GitHub</button>
+            <a href="https://wa.me/923105381868?text=Hi%20Usama,%20i%20just%20saw%20your%20Profile!" 
+               class="wa-btn" target="_blank">Contact on WhatsApp 💬</a>
+            
+            <a href="Usama_CV.pdf" class="resume-btn" target="_blank">Download CV 📄</a>            
+            
+            <button class="secondary-btn" onclick="location.href='https://github.com/usamaofficiall1212-cloud'">GitHub</button>
         </div>
     </div>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = "☀️ Light Mode";
+            } else {
+                btn.innerHTML = "🌙 Dark Mode";
+            }
+        });
+    </script>
 
 </body>
 </html>
