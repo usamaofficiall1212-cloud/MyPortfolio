@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usama | Android Developer</title>
+   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    
     <style>
         :root {
+            /* 2. COLOR PALETTE: Precision-engineered for Light Mode */
             --primary: #26b0fa; 
             --secondary: #03dac6; 
             --whatsapp: #25D366;
@@ -15,6 +18,7 @@
             --card-bg: #eeeeee;
         }
 
+        /* 3. DARK MODE OVERRIDE: Applies when the 'dark-mode' class is added to <body> */
         .dark-mode {
             --bg: #121212; 
             --surface: #1e1e1e; 
@@ -32,6 +36,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            /* Smooth transition makes theme switching feel like a high-end app */
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
@@ -45,10 +50,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
             border: 1px solid rgba(128, 128, 128, 0.2); 
             transition: background 0.4s ease;
-            position: relative; /* For the button positioning */
+            position: relative; 
         }
 
-        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
+        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 5px; }
 
         .project-grid {
             display: grid;
@@ -57,6 +62,7 @@
             margin-top: 40px;
         }
 
+        /* 4. CARD INTERACTION: Surgical hover effect used in modern UIs */
         .card {
             background: var(--card-bg);
             padding: 25px;
@@ -73,6 +79,7 @@
             box-shadow: 0 10px 20px rgba(3, 218, 198, 0.2);
         }
 
+        /* 5. BUTTON STYLES: Standardizing padding and transitions */
         .btn-group { 
             margin-top: 40px; 
             display: flex; 
@@ -110,7 +117,6 @@
         }
         .secondary-btn:hover { background: rgba(38, 176, 250, 0.1); transform: scale(1.05); }
 
-        /* Theme Toggle Styling */
         #theme-toggle {
             position: absolute;
             top: 20px;
@@ -128,26 +134,36 @@
     <div class="container">
         <button id="theme-toggle">🌙 Dark Mode</button>
 
-        <header>
+        <header style="display: flex; flex-direction: column; align-items: center;">
+           <dotlottie-player 
+    src="https://lottie.host/0278e63b-63a2-4a7b-a362-e64e9a59573f/7N2ZtX0y0z.json" 
+    background="transparent" 
+    speed="1" 
+    style="width: 140px; height: 140px;" 
+    loop 
+    autoplay>
+</dotlottie-player>
+
             <h3 style="color: var(--secondary); margin-bottom: 0; font-weight: 400; opacity: 0.8; font-size: 1.1rem;">
                 Welcome Guys!
             </h3>
-            <h1>Usama's Portfolio 💻</h1>
-            <p style="opacity: 0.7;">Software Developer | Kotlin Java & Full Stack Explorer</p>
+            <h1>Usama's Portfolio</h1>
+            <p style="opacity: 0.7; margin-top: 0;">Software Developer | Kotlin Java & Full Stack Explorer</p>
         </header>
+
         <h2 style="text-align: left; font-size: 1.2rem; margin-top: 40px; margin-bottom: -20px; color: var(--secondary); opacity: 0.9; font-weight: 500;">
-    Successful  Projects
-</h2>
+            Successful Projects
+        </h2>
         
         <div class="project-grid">
             <div class="card">
                 <h3>🥛 Al-Muqeet Milk</h3>
-                <p>Cloud-Backup management system with PDF billing. Built for managing milk supplies & to make gruelling calculations much more easier to manage & enhancing the business for a better future.</p>
+                <p>Cloud-Backup management system with PDF billing. Built for managing milk supplies & gruelling calculations, enhancing the business for a better future.</p>
             </div>
             
             <div class="card">
                 <h3>🔐 Aequs Vault</h3>
-                <p>Daily expense tracker with secure manual & Currency Converter.</p>
+                <p>Precision daily expense tracker featuring secure manual backups and an integrated Currency Converter.</p>
             </div>
         </div>
 
