@@ -260,31 +260,56 @@
         });
 
         // Gallery Modal Logic
-        function openModal(imgArray) {
-            const modal = document.getElementById("imageModal");
-            const container = document.getElementById("modalContent");
-            
-            // Clear old images
-            container.innerHTML = '';
-            
-            // Add new images with lazy loading
-            imgArray.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.className = 'modal-img';
-                img.loading = 'lazy'; // PERFORMANCE BOOST: Only loads when visible
-                container.appendChild(img);
-            });
+       let scrollInterval; // Variable to hold the animation
 
-            modal.style.display = "flex";
-            // Prevent background scrolling while gallery is open
-            document.body.style.overflow = "hidden";
-        }
+function openModal(imgArray) {
+    const modal = document.getElementById("imageModal");
+    const container = document.getElementById("modalContent");
+    
+    container.innerHTML = '';
+    imgArray.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'modal-img';
+        img.loading = 'lazy';
+        container.appendChild(img);
+    });
 
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
-            document.body.style.overflow = "auto";
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+
+    // --- AUTO-SCROLL LOGIC ---
+    // Wait a moment for images to appear, then start scrolling
+    setTimeout(() => {
+        startAutoScroll(container);
+    }, 1000);
+
+    // Stop auto-scroll if the user touches/scrolls manually
+    container.onwheel = () => stopAutoScroll();
+    container.ontouchstart = () => stopAutoScroll();
+}
+
+function startAutoScroll(el) {
+    stopAutoScroll(); // Clear any existing intervals
+    scrollInterval = setInterval(() => {
+        el.scrollTop += 1; // Increase this number (e.g., 2 or 3) for faster speed
+        
+        // Loop back to top if it reaches the bottom
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+            el.scrollTop = 0; 
         }
+    }, 30); // 30ms is a very smooth "slow" speed
+}
+
+function stopAutoScroll() {
+    clearInterval(scrollInterval);
+}
+
+function closeModal() {
+    stopAutoScroll(); // Stop the engine when closing
+    document.getElementById("imageModal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
     </script>
 
 </body>
