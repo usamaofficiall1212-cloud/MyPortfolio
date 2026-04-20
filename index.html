@@ -260,45 +260,71 @@
         });
 
         // Gallery Modal Logic
-       let scrollInterval; // Variable to hold the animation
+       let scrollInterval; 
+let resumeTimeout; // Timer for the 3-second resume logic
 
 function openModal(imgArray) {
     const modal = document.getElementById("imageModal");
     const container = document.getElementById("modalContent");
     
+    // Clear and build the gallery
     container.innerHTML = '';
     imgArray.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
         img.className = 'modal-img';
-        img.loading = 'lazy';
+        img.loading = 'lazy'; // Optimization for your 18+ images
         container.appendChild(img);
     });
 
     modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden"; // Prevent background scroll
 
-    // --- AUTO-SCROLL LOGIC ---
-    // Wait a moment for images to appear, then start scrolling
-    setTimeout(() => {
+    // Initial start after 1 second
+    resumeTimeout = setTimeout(() => {
         startAutoScroll(container);
     }, 1000);
 
-    // Stop auto-scroll if the user touches/scrolls manually
-    container.onwheel = () => stopAutoScroll();
-    container.ontouchstart = () => stopAutoScroll();
+    // --- SMART INTERACTION LOGIC ---
+
+    const stopAction = () => {
+        stopAutoScroll();
+        clearTimeout(resumeTimeout);
+    };
+
+    const startAction = () => {
+        clearTimeout(resumeTimeout);
+        // Resumes auto-scroll after 3 seconds of inactivity
+        resumeTimeout = setTimeout(() => {
+            startAutoScroll(container);
+        }, 3000); 
+    };
+
+    // Desktop/Mouse Interactions
+    container.onmousedown = stopAction;
+    container.onmouseup = startAction;
+    container.onwheel = stopAction;
+    // Specifically handle mouse wheel release
+    container.addEventListener('wheel', () => {
+        stopAction();
+        startAction();
+    }, { passive: true });
+
+    // Mobile/Touch Interactions
+    container.ontouchstart = stopAction;
+    container.ontouchend = startAction;
 }
 
 function startAutoScroll(el) {
-    stopAutoScroll(); // Clear any existing intervals
+    stopAutoScroll(); 
     scrollInterval = setInterval(() => {
-        el.scrollTop += 1; // Increase this number (e.g., 2 or 3) for faster speed
+        el.scrollTop += 1; 
         
-        // Loop back to top if it reaches the bottom
-        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+        // Loop back to top if at bottom
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight - 1) {
             el.scrollTop = 0; 
         }
-    }, 30); // 30ms is a very smooth "slow" speed
+    }, 30); // 30ms for that elegant drift speed
 }
 
 function stopAutoScroll() {
@@ -306,7 +332,8 @@ function stopAutoScroll() {
 }
 
 function closeModal() {
-    stopAutoScroll(); // Stop the engine when closing
+    stopAutoScroll();
+    clearTimeout(resumeTimeout);
     document.getElementById("imageModal").style.display = "none";
     document.body.style.overflow = "auto";
 }
