@@ -93,7 +93,7 @@
             opacity: 1;
         }
 
-        /* --- MODAL STYLES --- */
+        /* --- GALLERY MODAL STYLES --- */
         .modal {
             display: none; 
             position: fixed; 
@@ -106,18 +106,29 @@
             align-items: center;
         }
 
-        .modal-content {
+        .modal-scroll-container {
+            max-height: 85vh;
+            width: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        /* Hide scrollbar for cleaner look */
+        .modal-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-img {
             max-width: 320px; 
             width: 80%;
             border-radius: 20px;
             border: 4px solid var(--primary);
             box-shadow: 0 0 30px var(--primary);
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            transition: transform 0.3s ease;
         }
 
         .close {
@@ -127,6 +138,7 @@
             color: white;
             font-size: 40px;
             cursor: pointer;
+            z-index: 1001;
         }
 
         /* --- BUTTONS --- */
@@ -181,7 +193,8 @@
 
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close">&times;</span>
-        <img id="modalImg" class="modal-content">
+        <div class="modal-scroll-container" id="modalContent">
+            </div>
     </div>
 
     <div class="container">
@@ -209,12 +222,12 @@
         </h2>
         
         <div class="project-grid">
-            <div class="card" onclick="openModal('milk_ss.png')">
+            <div class="card" onclick="openModal(['milk_ss.png', 'milk_ss2.png', 'milk_ss3.png'])">
                 <h3>🥛 Al-Muqeet Milk</h3>
                 <p>Cloud-Backup management system with Automated PDF billing. Optimized for business efficiency and complex calculations.</p>
             </div>
             
-            <div class="card" onclick="openModal('aequs_ss.png')">
+            <div class="card" onclick="openModal(['aequs_ss.png', 'aequs_ss2.png', 'aequs_ss3.png'])">
                 <h3>🔐 Aequs Vault</h3>
                 <p>Precision daily expense tracker featuring secure manual backups and an integrated Currency Converter.</p>
             </div>
@@ -238,16 +251,31 @@
             btn.innerHTML = document.body.classList.contains('dark-mode') ? "☀️ Light Mode" : "🌙 Dark Mode";
         });
 
-        // Modal Logic
-        function openModal(imgSrc) {
+        // Gallery Modal Logic
+        function openModal(imgArray) {
             const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("modalImg");
+            const container = document.getElementById("modalContent");
+            
+            // Clear old images
+            container.innerHTML = '';
+            
+            // Add new images with lazy loading
+            imgArray.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'modal-img';
+                img.loading = 'lazy'; // PERFORMANCE BOOST: Only loads when visible
+                container.appendChild(img);
+            });
+
             modal.style.display = "flex";
-            modalImg.src = imgSrc;
+            // Prevent background scrolling while gallery is open
+            document.body.style.overflow = "hidden";
         }
 
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
+            document.body.style.overflow = "auto";
         }
     </script>
 
