@@ -68,7 +68,7 @@
             text-align: left;
             transition: all 0.3s ease;
             color: var(--text);
-            cursor: pointer; /* Makes it feel like a button */
+            cursor: pointer;
             position: relative;
         }
 
@@ -107,7 +107,7 @@
         }
 
         .modal-content {
-            max-width: 320px; /* Phone portrait width */
+            max-width: 320px; 
             width: 80%;
             border-radius: 20px;
             border: 4px solid var(--primary);
@@ -208,32 +208,29 @@
             Successful Projects
         </h2>
         
-       <div class="project-grid">
-    <div class="card" onclick="openModal('milk_ss.png')">
-        <h3>🥛 Al-Muqeet Milk</h3>
-        <p>Cloud-Backup management system with Automated PDF billing. Optimized for business efficiency and complex calculations.</p>
-    </div>
-    
-    <div class="card" onclick="openModal('aequs_ss.png')">
-        <h3>🔐 Aequs Vault</h3>
-        <p>Precision daily expense tracker featuring secure manual backups and an integrated Currency Converter.</p>
-    </div>
-</div>
+        <div class="project-grid">
+            <div class="card" onclick="openModal('milk_ss.png')">
+                <h3>🥛 Al-Muqeet Milk</h3>
+                <p>Cloud-Backup management system with Automated PDF billing. Optimized for business efficiency and complex calculations.</p>
+            </div>
+            
+            <div class="card" onclick="openModal('aequs_ss.png')">
+                <h3>🔐 Aequs Vault</h3>
+                <p>Precision daily expense tracker featuring secure manual backups and an integrated Currency Converter.</p>
+            </div>
+        </div>
 
-<script>
-    // Updated Modal Logic to handle the Aequs screenshot
-    function openModal(imgSrc) {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImg");
-        modal.style.display = "flex";
-        // This will now look for aequs_ss.png when you click the second card
-        modalImg.src = imgSrc;
-    }
+        <div class="btn-group">
+            <a href="https://wa.me/923105381868?text=Hi%20Usama,%20i%20just%20saw%20your%20Profile!" 
+               class="wa-btn" target="_blank">Contact on WhatsApp 💬</a>
+            
+            <a href="Usama_CV.pdf" class="resume-btn" target="_blank">Download CV 📄</a>            
+            
+            <button class="secondary-btn" onclick="location.href='https://github.com/usamaofficiall1212-cloud'">GitHub</button>
+        </div>
+    </div>
 
-    function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
-    }
-</script>
+    <script>
         // Theme Toggle Logic
         const btn = document.getElementById('theme-toggle');
         btn.addEventListener('click', () => {
